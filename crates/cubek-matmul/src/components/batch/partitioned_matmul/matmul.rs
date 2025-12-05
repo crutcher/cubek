@@ -1,3 +1,4 @@
+use cubecl::prelude::*;
 use std::marker::PhantomData;
 
 use crate::components::batch::{BatchConfig as _, BatchMatmul, CubeCountInput};
@@ -11,8 +12,6 @@ use crate::components::{
     },
     global::args::MatmulArgs,
 };
-use cubecl_core as cubecl;
-use cubecl_core::prelude::*;
 
 /// Executes matrix multiplication at the batch level,
 /// assigning each cube to handle multiple global matmuls.

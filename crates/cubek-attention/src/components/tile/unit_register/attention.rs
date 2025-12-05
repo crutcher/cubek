@@ -1,9 +1,9 @@
 use std::cmp::max;
 
-use cubecl_core as cubecl;
-use cubecl_core::prelude::*;
-use cubecl_matmul::components::tile::StridedTile;
-use cubecl_std::tensor::layout::Coords2d;
+use cubecl;
+use cubecl::prelude::*;
+use cubecl::std::tensor::layout::Coords2d;
+use cubek_matmul::components::tile::StridedTile;
 
 use crate::components::AttentionPrecision;
 use crate::components::attention_types::*;
