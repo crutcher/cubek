@@ -10,6 +10,8 @@
 //! It also provides implementation of the [`ReduceInstruction`] trait for common operations in the [`instructions`] module.
 //! Finally, it provides many reusable primitives to perform different general reduction algorithms in the [`primitives`] module.
 
+pub(crate) mod view;
+
 pub mod args;
 pub mod instructions;
 pub mod primitives;
