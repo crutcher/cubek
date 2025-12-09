@@ -43,7 +43,7 @@ impl<R: Runtime, E: Float> Benchmark for ReduceBench<R, E> {
             out.as_ref(),
             self.axis,
             Some(ReduceStrategy {
-                use_planes: true,
+                use_planes: false,
                 shared: false,
             }),
             ReduceOperationConfig::Sum,

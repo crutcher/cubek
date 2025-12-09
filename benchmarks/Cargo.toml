@@ -19,9 +19,9 @@ version.workspace = true
 cubek = { path = "../crates/cubek", version = "0.0.1", default-features = false, features = [
     "random",
     "reduce",
-    "matmul",
-    "convolution",
-    "attention",
+    # "matmul",
+    # "convolution",
+    # "attention",
 ] }
 cubecl = { workspace = true, features = ["test-runtime", "stdlib"] }
 half = { workspace = true }
