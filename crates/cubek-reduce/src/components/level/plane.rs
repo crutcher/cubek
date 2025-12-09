@@ -1,9 +1,6 @@
 use crate::{
     BoundChecksInner, LineMode,
-    components::{
-        instructions::*, level::fill_coordinate_line, partition::ReducePartition,
-        precision::ReducePrecision,
-    },
+    components::{instructions::*, partition::ReducePartition, precision::ReducePrecision},
     routines::PlaneReduceBlueprint,
 };
 use cubecl::prelude::*;
@@ -49,33 +46,31 @@ pub fn reduce<P: ReducePrecision, I: List<Line<P::EI>>, R: ReduceInstruction<P>>
     #[comptime] config: PlaneReduceConfig,
 ) -> R::AccumulatorItem {
     let plane_dim = CUBE_DIM_X;
+    let worker_index = UNIT_POS_X;
 
+    let requirements = R::requirements(inst);
     let mut accumulator = R::null_accumulator(inst, config.line_size);
-
     let mut first_index = range.index_start;
+
     for first_coordinate in range_stepped(
         range.coordinate_start,
         range.coordinate_end,
         range.coordinate_step,
     ) {
         let unit_coordinate_offset = match config.line_mode {
-            LineMode::Parallel => UNIT_POS_X * config.line_size,
-            LineMode::Perpendicular => UNIT_POS_X,
+            LineMode::Parallel => worker_index * config.line_size,
+            LineMode::Perpendicular => worker_index,
         };
         let unit_coordinate = first_coordinate + unit_coordinate_offset;
 
-        let requirements = R::requirements(inst);
-        let coordinates = if comptime![requirements.coordinates] {
-            ReduceCoordinate::new_Required(fill_coordinate_line(
-                unit_coordinate,
-                config.line_size,
-                config.line_mode,
-            ))
-        } else {
-            ReduceCoordinate::new_NotRequired()
-        };
+        let coordinates = ReduceCoordinate::new(
+            unit_coordinate,
+            requirements,
+            config.line_size,
+            config.line_mode,
+        );
 
-        let index = first_index + UNIT_POS_X * range.index_step;
+        let index = first_index + worker_index * range.index_step;
         let item = match config.bound_checks {
             BoundChecksInner::None => items.read(index),
             BoundChecksInner::Mask => {
