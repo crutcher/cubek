@@ -1,3 +1,5 @@
+pub mod shared_sum;
+
 mod base;
 mod blueprint;
 

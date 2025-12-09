@@ -14,17 +14,16 @@ pub mod components;
 pub mod launch;
 pub mod routines;
 
-mod error;
-mod shared_sum;
+pub use routines::shared_sum::shared_sum;
 
+mod error;
+
+pub use components::args::init_tensors;
 pub use components::config::*;
 pub use components::instructions::ReduceFamily;
 pub use components::instructions::ReduceInstruction;
 pub use components::precision::ReducePrecision;
 pub use error::*;
-pub use shared_sum::*;
-
-pub use components::args::init_tensors;
 pub use launch::{ReduceDtypes, reduce_kernel};
 
 use cubecl::prelude::*;
