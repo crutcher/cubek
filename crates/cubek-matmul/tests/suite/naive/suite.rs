@@ -153,8 +153,7 @@ fn test_naive(case: MatmulTestCase) {
         Distribution::Uniform(-1., 1.),
         problem.lhs_layout.into(),
     )
-    .generate_with_f32_host_data()
-    .unwrap();
+    .generate_with_f32_host_data();
 
     let (rhs, rhs_data) = TestInput::random(
         client.clone(),
@@ -164,12 +163,15 @@ fn test_naive(case: MatmulTestCase) {
         Distribution::Uniform(-1., 1.),
         problem.rhs_layout.into(),
     )
-    .generate_with_f32_host_data()
-    .unwrap();
+    .generate_with_f32_host_data();
 
-    let out = TestInput::zeros(client.clone(), problem.shape(MatmulIdent::Out), *dtype)
-        .generate_without_host_data()
-        .unwrap();
+    let out = TestInput::zeros(
+        client.clone(),
+        problem.shape(MatmulIdent::Out),
+        *dtype,
+        MatrixLayout::RowMajor.into(),
+    )
+    .generate_without_host_data();
 
     let lhs_handle = MatmulInputHandleRef::Normal(lhs.as_ref(), dtype.dtype);
     let rhs_handle = MatmulInputHandleRef::Normal(rhs.as_ref(), dtype.dtype);

@@ -26,8 +26,7 @@ pub fn test_launch(
         Distribution::Uniform(-1., 1.),
         StrideSpec::RowMajor,
     )
-    .generate_with_f32_host_data()
-    .unwrap();
+    .generate_with_f32_host_data();
 
     let (key_handle, key_data) = TestInput::random(
         client.clone(),
@@ -37,8 +36,7 @@ pub fn test_launch(
         Distribution::Uniform(-1., 1.),
         StrideSpec::RowMajor,
     )
-    .generate_with_f32_host_data()
-    .unwrap();
+    .generate_with_f32_host_data();
 
     let (value_handle, value_data) = TestInput::random(
         client.clone(),
@@ -48,8 +46,7 @@ pub fn test_launch(
         Distribution::Uniform(-1., 1.),
         StrideSpec::RowMajor,
     )
-    .generate_with_f32_host_data()
-    .unwrap();
+    .generate_with_f32_host_data();
 
     let (mask_handle, mask_data) = if definition.masked {
         let (mask_handle, mask_data) = TestInput::random(
@@ -60,8 +57,7 @@ pub fn test_launch(
             Distribution::Bernoulli(0.1),
             StrideSpec::RowMajor,
         )
-        .generate_with_bool_host_data()
-        .unwrap();
+        .generate_with_bool_host_data();
 
         (Some(mask_handle), Some(mask_data))
     } else {
@@ -72,9 +68,9 @@ pub fn test_launch(
         client.clone(),
         out_shape.to_vec(),
         definition.global_dtypes.out,
+        StrideSpec::RowMajor,
     )
-    .generate_without_host_data()
-    .unwrap();
+    .generate_without_host_data();
 
     match launch(
         strategy,

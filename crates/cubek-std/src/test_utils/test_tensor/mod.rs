@@ -1,3 +1,13 @@
-mod test_input;
+mod arange;
+mod base;
+mod cast;
+mod custom;
+mod eye;
+mod host_data;
+mod random;
+mod strides;
+mod zeros;
 
-pub use test_input::*;
+pub use base::*;
+pub use host_data::*;
+pub use strides::StrideSpec;
