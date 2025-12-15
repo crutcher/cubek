@@ -112,6 +112,7 @@ pub fn launch<R: Runtime>(
     launch_ref(client, &lhs.as_ref(), &rhs.as_ref(), out, &dtypes)
 }
 
+#[tracing::instrument(skip(client, lhs, rhs, out))]
 #[allow(clippy::result_large_err)]
 pub fn launch_ref<R: Runtime>(
     client: &ComputeClient<R>,

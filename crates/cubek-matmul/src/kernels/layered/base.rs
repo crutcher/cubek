@@ -77,6 +77,7 @@ pub fn launch<R: Runtime, A: Algorithm>(
 /// Cmma will be used if available and enabled,
 /// otherwise it will fall back on a non-cmma implementation
 #[allow(clippy::result_large_err)]
+#[tracing::instrument(skip(client, lhs, rhs, out, selection))]
 pub fn launch_ref<R: Runtime, A: Algorithm>(
     client: &ComputeClient<R>,
     lhs: &MatmulInputHandleRef<'_, R>,

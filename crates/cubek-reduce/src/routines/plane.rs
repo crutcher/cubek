@@ -21,6 +21,7 @@ impl Routine for PlaneRoutine {
     type Strategy = PlaneStrategy;
     type Blueprint = PlaneReduceBlueprint;
 
+    #[tracing::instrument(skip(self, client, problem, settings, strategy))]
     fn prepare<R: Runtime>(
         &self,
         client: &ComputeClient<R>,

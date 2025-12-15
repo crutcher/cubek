@@ -12,7 +12,7 @@ version.workspace = true
 
 [features]
 default = ["std", "cubecl/default"]
-std = ["cubecl/std"]
+std = ["cubecl/std", "tracing/default"]
 
 conv_tests_all = [
     "conv_tests_plane",
@@ -52,6 +52,8 @@ cubecl = { workspace = true, features = ["stdlib"] }
 cubecl-common = { workspace = true }
 cubek-matmul = { path = "../cubek-matmul", default-features = false, version = "0.0.1" }
 derive-new = { workspace = true }
+
+tracing = { workspace = true, features = ["attributes"] }
 
 bytemuck = { workspace = true }
 half = { workspace = true, features = ["bytemuck"] }
