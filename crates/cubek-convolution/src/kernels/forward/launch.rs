@@ -71,6 +71,7 @@ pub fn launch<R: Runtime, const N_SPATIAL: usize>(
 /// * `bias` - The bias added to each out channel
 /// * `options` - The options to use for the convolution
 #[allow(clippy::result_large_err, clippy::too_many_arguments)]
+#[tracing::instrument(skip(strategy, client, input, weight, bias, out, args))]
 pub fn launch_ref<R: Runtime, const N_SPATIAL: usize>(
     strategy: &Strategy,
     client: &ComputeClient<R>,
@@ -141,6 +142,7 @@ impl<'a, R: Runtime, const N_SPATIAL: usize> Convolution<'a, R, N_SPATIAL> {
 }
 
 #[allow(clippy::too_many_arguments)]
+#[tracing::instrument(skip(client, input, weight, bias, out))]
 fn launch_with_algorithm<R: Runtime, Alg: Algorithm>(
     client: &ComputeClient<R>,
     input: &MatmulInputHandleRef<'_, R>,
@@ -207,6 +209,7 @@ where
 }
 
 #[allow(clippy::result_large_err, clippy::too_many_arguments)]
+#[tracing::instrument(skip(client, input, weight, bias, out))]
 pub fn launch_kernel<R: Runtime, Alg: Algorithm>(
     client: &ComputeClient<R>,
     input: &MatmulInputHandleRef<'_, R>,
