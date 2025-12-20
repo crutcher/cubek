@@ -40,6 +40,16 @@ quantization = ["cubek-quant/kernels"]
 random = ["cubek-random"]
 reduce = ["cubek-reduce"]
 
+tracing = [
+    "cubecl/tracing",
+    "cubek-quant?/tracing",
+    "cubek-random?/tracing",
+    "cubek-reduce?/tracing",
+    "cubek-matmul?/tracing",
+    "cubek-convolution?/tracing",
+    "cubek-attention?/tracing",
+]
+
 [dependencies]
 cubecl = { workspace = true }
 cubek-attention = { path = "../cubek-attention", version = "=0.1.0-pre.1", default-features = false, optional = true }

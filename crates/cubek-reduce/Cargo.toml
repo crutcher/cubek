@@ -16,11 +16,16 @@ version.workspace = true
 
 [features]
 default = ["std", "cubecl/default"]
-std = ["cubecl/std", "thiserror/std", "tracing/default"]
+std = ["cubecl/std", "thiserror/std"]
+
+tracing = [
+    "dep:tracing",
+    "cubecl/tracing",
+]
 
 [dependencies]
 cubecl = { workspace = true }
-tracing = { workspace = true, features = ["attributes"] }
+tracing = { workspace = true, features = ["attributes"], optional = true }
 
 num-traits = "0.2.19"
 pretty_assertions = { workspace = true, optional = true }

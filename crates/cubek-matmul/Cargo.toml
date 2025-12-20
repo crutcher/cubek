@@ -52,12 +52,20 @@ tests = [
     "matmul_tests_f16",
 ]
 
+tracing = [
+    "dep:tracing",
+    "cubecl/tracing",
+    "cubecl-common/tracing",
+    # "cubek-random/tracing",
+    # "cubek-reduce/tracing",
+]
+
 
 [dependencies]
 # cubek-random = { path = "../cubek-random", version = "=0.0.1", default-features = false }
 # cubek-reduce = { path = "../cubek-reduce", version = "=0.0.1", default-features = false }
 
-tracing = { workspace = true, features = ["attributes"] }
+tracing = { workspace = true, features = ["attributes"], optional = true }
 
 bytemuck = { workspace = true }
 cubecl = { workspace = true, features = ["stdlib"] }

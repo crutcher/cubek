@@ -47,6 +47,12 @@ conv_tests_swizzle = []
 conv_tests_tilewise = []
 conv_tests_tma = []
 
+tracing = [
+    "cubecl/tracing",
+    "cubecl-common/tracing",
+    "cubek-matmul/tracing",
+]
+
 
 [dependencies]
 cubecl = { workspace = true, features = ["stdlib"] }

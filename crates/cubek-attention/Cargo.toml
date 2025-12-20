@@ -15,6 +15,13 @@ default = ["std", "cubecl/default"]
 std = ["cubecl/std"]
 tests = []
 
+tracing = [
+    "cubecl/tracing",
+    "cubecl-common/tracing",
+    "cubek-matmul/tracing",
+    "cubek-random/tracing",
+]
+
 [dependencies]
 cubecl = { workspace = true, features = ["stdlib"] }
 cubecl-common = { workspace = true }
